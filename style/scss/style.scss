@@ -1,0 +1,79 @@
+/* Déclaration des variables */
+$OclockColor:#48988c;
+$OclockColorCard:#0ac3a7;
+
+/* Déclaration des variables */
+@mixin proprietesCard{
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: $OclockColor;
+  height: 100%;
+  display: flex;
+
+}
+.titre{
+  width:100%;
+  color:white;
+  text-align:center;
+  margin-bottom:2%;
+}
+/* Permet de définir les caracteristiques de la zone de jeu,
+ la propriete flex est très importante pour le mélange des cartes,
+ la propriete perspective permet de donner un effet lorsque l'on retourne une carte */
+.game {
+  width: 90%;
+  height: 580px;
+  margin: 1% 5% 1% 5%;
+  display: flex;
+  flex-wrap: wrap;
+  perspective: 700px;
+}
+
+.card {
+  position: relative;
+  width: 13.70%;
+  height: 31%;
+  margin: 5px;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform .5s;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+}
+
+.card:active {
+  transform: scale(0.97);
+  transition: transform .2s;
+}
+
+/* Permet de retourner la carte lorsqu'on ajoute la classe flip */
+.card.flip {
+  transform: rotateY(180deg);
+}
+
+.front
+{
+  @include proprietesCard;
+  background: white;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+
+
+.back {
+  @include proprietesCard;
+  border-radius: 5px;
+  background: $OclockColorCard;
+  backface-visibility: hidden;
+}
